@@ -37,7 +37,7 @@ The second way to use configuration files is to save the file wherever you would
 
     eslint -c myconfig.json myfiletotest.js
 
-If you are using one configuration file and want ESLint to ignore any `.eslintrc.*` files, make sure to use [`--no-eslintrc`](https://eslint.org/docs/user-guide/command-line-interface#-no-eslintrc) along with the [`-c`](https://eslint.org/docs/user-guide/command-line-interface#-c-config) flag.
+If you are using one configuration file and want ESLint to ignore any `.eslintrc.*` files, make sure to use [`--no-eslintrc`](https://eslint.org/docs/user-guide/command-line-interface#--no-eslintrc) along with the [`-c`](https://eslint.org/docs/user-guide/command-line-interface#-c---config) flag.
 
 ### Comments in configuration files
 
@@ -191,7 +191,7 @@ The `rules` property can do any of the following to extend (or override) the set
 * override options for rules from base configurations:
     * Base config: `"quotes": ["error", "single", "avoid-escape"]`
     * Derived config: `"quotes": ["error", "single"]`
-    * Resulting actual config: `"quotes": ["error", "single"]
+    * Resulting actual config: `"quotes": ["error", "single"]`
 
 ### Using a shareable configuration package
 

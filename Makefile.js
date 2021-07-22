@@ -13,8 +13,7 @@
 
 require("shelljs/make");
 
-const lodash = require("lodash"),
-    checker = require("npm-license"),
+const checker = require("npm-license"),
     ReleaseOps = require("eslint-release"),
     dateformat = require("dateformat"),
     fs = require("fs"),
@@ -200,7 +199,7 @@ function generateRuleIndexPage() {
                         recommended: rule.meta.docs.recommended || false,
                         fixable: !!rule.meta.fixable
                     },
-                    category = lodash.find(categoriesData.categories, { name: rule.meta.docs.category });
+                    category = categoriesData.categories.find(c => c.name === rule.meta.docs.category);
 
                 if (!category.rules) {
                     category.rules = [];
@@ -487,7 +486,7 @@ target.lint = function([fix = false] = []) {
     }
 
     echo("Validating JSON Files");
-    lodash.forEach(JSON_FILES, validateJsonFile);
+    JSON_FILES.forEach(validateJsonFile);
 
     echo("Validating Markdown Files");
     lastReturn = lintMarkdown(MARKDOWN_FILES_ARRAY);
@@ -545,7 +544,7 @@ target.mocha = () => {
 
     echo("Running unit tests");
 
-    lastReturn = exec(`${getBinFile("nyc")} -- ${MOCHA} -R progress -t ${MOCHA_TIMEOUT} -c ${TEST_FILES}`);
+    lastReturn = exec(`${getBinFile("nyc")} -- ${MOCHA} --forbid-only -R progress -t ${MOCHA_TIMEOUT} -c ${TEST_FILES}`);
     if (lastReturn.code !== 0) {
         errors++;
     }
